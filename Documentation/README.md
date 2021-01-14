@@ -25,3 +25,15 @@
 ```
 - cute, cartoon like
 - each world have has its own distinctive, catchy theme
+```
+## gameplay 
+- point and click trap builder
+- player plans out how and where traps are going to be built, then when ready, catches slimes.
+- player gets different points for catching different types of slimes.
+- player gets stars for reaching earning n amount of points.
+![image](https://user-images.githubusercontent.com/33091666/104576024-5c47f180-5660-11eb-9988-4ed8d160d8f5.png)
+
+
+
+## extra
+mobile port
