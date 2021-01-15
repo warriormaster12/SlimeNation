@@ -24,7 +24,7 @@
 ## music 
 ```
 - cute, cartoon like
-- each world have has its own distinctive, catchy theme
+- each world has its own distinctive, catchy theme
 ```
 ## gameplay 
 - point and click trap builder
