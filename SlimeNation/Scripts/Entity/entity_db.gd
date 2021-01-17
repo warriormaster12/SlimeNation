@@ -15,6 +15,11 @@ func _load_traps() -> void:
     # Not using register_trap_id() to avoid sending signals
     __trap_id["Default"] = 0
     __trap_id["Spikes"] = 1
+    __trap_id["Some trap 1"] = 1
+    __trap_id["Some trap 2"] = 2
+    __trap_id["Some trap 3"] = 3
+    __trap_id["Some trap 4"] = 4
+    __trap_id["Some trap 5"] = 5
 
 # Registers a trap id.
 # @param name The name of the trap
