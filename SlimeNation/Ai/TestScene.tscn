@@ -7,6 +7,10 @@
 
 [node name="SpawnPoint" parent="." instance=ExtResource( 2 )]
 object_to_spawn = ExtResource( 1 )
+random_time_range = {
+"max": 2.0,
+"min": 0.2
+}
 
 [node name="SpawnPoint2" parent="." instance=ExtResource( 2 )]
 position = Vector2( 0, 100 )
