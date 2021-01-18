@@ -3,5 +3,7 @@
         "editor.detectIndentation": false,
         "editor.tabSize": 4,
         "editor.insertSpaces": false,
-    }
+    },
+    "vim.hlsearch": true,
+    "vim.autoindent": false
 }
