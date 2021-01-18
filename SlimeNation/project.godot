@@ -26,7 +26,7 @@ config/icon="res://icon.png"
 
 [autoload]
 
-EntityDb="*res://Scripts/Entity/entity_db.gd"
+EntityDb="*res://Scripts/Entity/EntityDB.gd"
 BuildPhaseState="*res://PhaseBuild/BuildPhaseState.gd"
 
 [input]
