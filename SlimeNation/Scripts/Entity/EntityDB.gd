@@ -55,6 +55,6 @@ func get_all_trap_ids() -> Array:
 # @return null if no scene has been loaded for that name
 func get_entity_node(name: String) -> PackedScene:
     var id = get_trap_id(name)
-    if not __nodes.has(id):
+    if __nodes == null or not __nodes.has(id):
         return null
     return __nodes[id]

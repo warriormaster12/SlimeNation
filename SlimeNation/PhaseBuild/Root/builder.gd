@@ -10,6 +10,9 @@ var __traps: Array = [] setget _set_traps, _get_traps
 
 const CELL_SIZE = 16
 
+var cursor_pos: Vector2 = Vector2()
+var trap_ghost: Node = null
+
 
 func _init() -> void:
     __index = 0
@@ -17,12 +20,26 @@ func _init() -> void:
     var _err = EntityDb.connect("register_trap", self, "_on_EntityDb_register_trap")
 
 func select_trap(idx: int) -> void:
+    if trap_ghost != null:
+        trap_ghost.queue_free()
+        remove_child(trap_ghost)
+        trap_ghost = null
     if self.__traps.empty():
         self.__index = -1 # Invalid value
         _log("Deselect trap")
     else:
         self.__index = _wrap_index(idx, self.__traps)
-        _log("Select trap %s (%d)" % [self.__traps[self.__index], self.__index])
+        var name = self.__traps[self.__index]
+        _log("Select trap %s (%d)" % [name, self.__index])
+        var nodeScene = EntityDb.get_entity_node(name)
+        if nodeScene == null:
+            _log("No resource loaded for '%s'" % name)
+            return
+        trap_ghost = nodeScene.instance()
+        trap_ghost.z_index = 10
+        trap_ghost.position = cursor_pos
+        trap_ghost.modulate = Color(1, 1, 1, 0.5)
+        add_child(trap_ghost)
 
 func refresh_traps() -> void:
     _log("Refresh trap IDs")
@@ -30,6 +47,20 @@ func refresh_traps() -> void:
     self.__traps = EntityDb.get_all_trap_ids()
     _log("Traps: %s" % [self.__traps])
     select_trap(self.__index)
+
+# Built-in functions
+
+func _process(_delta):
+    if self.__index == -1:
+        return
+    if trap_ghost != null:
+        trap_ghost.position = _fit_to_cell(cursor_pos)
+
+func _unhandled_input(event):
+    if self.__index == -1:
+        return
+    if event is InputEventMouseMotion:
+        cursor_pos = event.position
 
 # EntityDB signals
 
