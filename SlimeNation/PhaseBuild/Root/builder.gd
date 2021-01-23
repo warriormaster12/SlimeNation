@@ -1,5 +1,8 @@
 extends Node2D
 
+export (NodePath) var container_path
+onready var container = get_node(container_path)
+
 # Index of the selected trap
 var __index: int = -1 setget _set_index, _get_index
 # String[]
@@ -36,7 +39,7 @@ func _on_EntityDb_unregister_trap(_name: String):
 
 # InputHandler signals
 
-func _on_InputHandler_place_trap():
+func _on_InputHandler_place_trap(x: int, y: int):
     if self.__index == -1:
         return
     name = self.__traps[self.__index]
@@ -44,7 +47,14 @@ func _on_InputHandler_place_trap():
         _log("Invalid trap name '%s'" % name)
         return
     var id = EntityDb.get_trap_id(name)
-    _log("Build '%s (id: %s)'" % [name, id])
+    var nodeScene = EntityDb.get_entity_node(name)
+    if nodeScene == null:
+        _log("No resource loaded for '%s'" % name)
+        return
+    _log("Build '%s (id: %s)' at (%d, %d)" % [name, id, x, y])
+    var node = nodeScene.instance()
+    node.position = Vector2(x, y)
+    container.add_child(node)
 
 func _on_InputHandler_select_trap(index: int):
     select_trap(index)

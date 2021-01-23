@@ -8,6 +8,7 @@
 
 [node name="Builder" type="Node2D" parent="."]
 script = ExtResource( 1 )
+container_path = NodePath("../TrapContainer")
 
 [node name="InputHandler" type="Node2D" parent="."]
 script = ExtResource( 2 )
@@ -25,6 +26,8 @@ anchor_left = 1.0
 margin_left = -160.0
 margin_right = 20.0
 grow_horizontal = 0
+
+[node name="TrapContainer" type="Node2D" parent="."]
 [connection signal="place_trap" from="InputHandler" to="Builder" method="_on_InputHandler_place_trap"]
 [connection signal="select_next_trap" from="InputHandler" to="Builder" method="_on_InputHandler_select_next_trap"]
 [connection signal="select_prev_trap" from="InputHandler" to="Builder" method="_on_InputHandler_select_prev_trap"]
