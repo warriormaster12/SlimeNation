@@ -8,6 +8,8 @@ var __index: int = -1 setget _set_index, _get_index
 # String[]
 var __traps: Array = [] setget _set_traps, _get_traps
 
+const CELL_SIZE = 16
+
 
 func _init() -> void:
     __index = 0
@@ -51,10 +53,11 @@ func _on_InputHandler_place_trap(x: int, y: int):
     if nodeScene == null:
         _log("No resource loaded for '%s'" % name)
         return
-    _log("Build '%s (id: %s)' at (%d, %d)" % [name, id, x, y])
+    var pos = _fit_to_cell(Vector2(x, y))
     var node = nodeScene.instance()
-    node.position = Vector2(x, y)
+    node.position = pos
     container.add_child(node)
+    _log("Build '%s (id: %s)' at (%d, %d)" % [name, id, pos.x, pos.y])
 
 func _on_InputHandler_select_trap(index: int):
     select_trap(index)
@@ -69,6 +72,9 @@ func _on_InputHandler_select_prev_trap():
 
 func _wrap_index(idx: int, arr: Array) -> int:
     return ((idx % arr.size()) + arr.size()) % arr.size()
+
+func _fit_to_cell(pos: Vector2) -> Vector2:
+    return (pos / CELL_SIZE).floor() * CELL_SIZE
 
 func _log(msg: String) -> void:
     print("[Builder]: %s" % msg)
