@@ -7,8 +7,6 @@ signal select_next_trap()
 signal select_prev_trap()
 signal toggle_build_menu()
 
-func _ready():
-	pass # Replace with function body.
 
 func _unhandled_input(event):
 	if event.is_action_pressed("game_build_place"):
@@ -41,10 +39,6 @@ func _unhandled_input(event):
 	elif event.is_action_pressed("game_build_menu_toggle"):
 		_log("Emit toggle_build_menu")
 		emit_signal("toggle_build_menu")
-	elif event is InputEventKey and event.is_pressed():
-		if event.scancode == KEY_T:
-			_log("Register new trap 'New' with id '10'")
-			EntityDb.register_trap_id("New", 10)
 
 # Utility
 
