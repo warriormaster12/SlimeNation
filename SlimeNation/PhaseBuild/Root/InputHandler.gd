@@ -2,6 +2,7 @@ extends Node2D
 
 
 signal place_trap(x, y)
+signal rotate_trap()
 signal select_trap(index)
 signal select_next_trap()
 signal select_prev_trap()
@@ -13,6 +14,9 @@ func _unhandled_input(event):
 		_log("Emit place_trap")
 		var pos = get_viewport().get_mouse_position();
 		emit_signal("place_trap", pos.x, pos.y)
+	elif event.is_action_pressed("game_build_rotate_trap"):
+		_log("Emit rotate_trap")
+		emit_signal("rotate_trap")
 	elif event.is_action_released("game_build_select_next_trap"):
 		# Must use released event for scroll wheel
 		_log("Emit select_next_trap")

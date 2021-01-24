@@ -9,16 +9,45 @@ var __index: int = -1 setget _set_index, _get_index
 var __traps: Array = [] setget _set_traps, _get_traps
 
 const CELL_SIZE = 16
+const ROTATE_STEP_DEG = 90.0
 
 var cursor_pos: Vector2 = Vector2()
 var trap_ghost: Node = null
 var can_place: bool = false
+var ghost_rotation_deg: float = 0
 
 
 func _init() -> void:
 	var _err
 	_err = EntityDb.connect("register_trap", self, "_on_EntityDb_register_trap")
 	_err = EntityDb.connect("unregister_trap", self, "_on_EntityDb_unregister_trap")
+
+func place_trap(x: int, y: int) -> void:
+	if self.__index == -1 or not can_place:
+		return
+	name = self.__traps[self.__index]
+	if not EntityDb.has_trap_id(name):
+		_log("Invalid trap name '%s'" % name)
+		return
+	var id = EntityDb.get_trap_id(name)
+	var nodeScene = EntityDb.get_entity_node(name)
+	if nodeScene == null:
+		_log("No resource loaded for '%s'" % name)
+		return
+	var pos = _fit_to_cell(Vector2(x, y))
+	var node = nodeScene.instance()
+	node.position = pos
+	container.add_child(node)
+	_log("Build '%s (id: %s)' at (%d, %d)" % [name, id, pos.x, pos.y])
+
+func rotate_trap() -> void:
+	if self.__index == -1 or trap_ghost == null:
+		return
+	ghost_rotation_deg += ROTATE_STEP_DEG
+	ghost_rotation_deg = floor(ghost_rotation_deg / ROTATE_STEP_DEG) * ROTATE_STEP_DEG
+	while ghost_rotation_deg >= 360:
+		ghost_rotation_deg -= 360
+	trap_ghost.rotation = ghost_rotation_deg * PI / 180.0
 
 func select_trap(idx: int) -> void:
 	if trap_ghost != null:
@@ -41,6 +70,7 @@ func select_trap(idx: int) -> void:
 		trap_ghost = nodeScene.instance()
 		trap_ghost.z_index = 10
 		trap_ghost.position = _fit_to_cell(cursor_pos)
+		trap_ghost.rotation = ghost_rotation_deg * PI / 180.0
 		trap_ghost.modulate = Color(1, 1, 1, 0.5)
 		var _err
 		_err = trap_ghost.get_node("Collider").connect("area_entered", self, "_on_Ghost_area_entered")
@@ -87,22 +117,10 @@ func _on_EntityDb_unregister_trap(_name: String):
 # InputHandler signals
 
 func _on_InputHandler_place_trap(x: int, y: int):
-	if self.__index == -1 or not can_place:
-		return
-	name = self.__traps[self.__index]
-	if not EntityDb.has_trap_id(name):
-		_log("Invalid trap name '%s'" % name)
-		return
-	var id = EntityDb.get_trap_id(name)
-	var nodeScene = EntityDb.get_entity_node(name)
-	if nodeScene == null:
-		_log("No resource loaded for '%s'" % name)
-		return
-	var pos = _fit_to_cell(Vector2(x, y))
-	var node = nodeScene.instance()
-	node.position = pos
-	container.add_child(node)
-	_log("Build '%s (id: %s)' at (%d, %d)" % [name, id, pos.x, pos.y])
+	place_trap(x, y)
+
+func _on_InputHandler_rotate_trap():
+	rotate_trap()
 
 func _on_InputHandler_select_trap(index: int):
 	select_trap(index)
