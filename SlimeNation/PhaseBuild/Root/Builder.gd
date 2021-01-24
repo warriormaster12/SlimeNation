@@ -13,7 +13,7 @@ const ROTATE_STEP_DEG = 90.0
 
 var cursor_pos: Vector2 = Vector2()
 var trap_ghost: Node = null
-var can_place: bool = false
+var colliders_counter: int = 0
 var ghost_rotation_deg: float = 0
 
 
@@ -23,7 +23,7 @@ func _init() -> void:
 	_err = EntityDb.connect("unregister_trap", self, "_on_EntityDb_unregister_trap")
 
 func place_trap(x: int, y: int) -> void:
-	if self.__index == -1 or not can_place:
+	if self.__index == -1 or colliders_counter > 0:
 		return
 	name = self.__traps[self.__index]
 	if not EntityDb.has_trap_id(name):
@@ -54,7 +54,6 @@ func select_trap(idx: int) -> void:
 		trap_ghost.queue_free()
 		remove_child(trap_ghost)
 		trap_ghost = null
-		can_place = false
 	if self.__traps.empty() or idx < 0:
 		self.__index = -1 # Invalid value
 		_log("Deselect trap")
@@ -66,7 +65,6 @@ func select_trap(idx: int) -> void:
 		if nodeScene == null:
 			_log("No resource loaded for '%s'" % name)
 			return
-		can_place = true
 		trap_ghost = nodeScene.instance()
 		trap_ghost.z_index = 10
 		trap_ghost.position = _fit_to_cell(cursor_pos)
@@ -99,12 +97,13 @@ func _process(_delta):
 # Trap ghost signals
 
 func _on_Ghost_area_entered(_area: Area2D):
-	can_place = false
+	colliders_counter += 1
 	trap_ghost.modulate = Color(0.5, 0, 0, 0.5)
 
 func _on_Ghost_area_exited(_area: Area2D):
-	can_place = true
-	trap_ghost.modulate = Color(1, 1, 1, 0.5)
+	colliders_counter -= 1
+	if colliders_counter == 0:
+		trap_ghost.modulate = Color(1, 1, 1, 0.5)
 
 # EntityDB signals
 
