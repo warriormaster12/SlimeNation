@@ -14,25 +14,25 @@ signal available_traps_changed()
 var available_traps: Array setget _set_available_traps
 
 func add_available_trap(name: String) -> void:
-    available_traps.push_back(name)
-    emit_signal("available_traps_changed")
+	available_traps.push_back(name)
+	emit_signal("available_traps_changed")
 
 func remove_available_trap(idx: int) -> void:
-    available_traps.remove(idx)
-    emit_signal("available_traps_changed")
+	available_traps.remove(idx)
+	emit_signal("available_traps_changed")
 
 # Setters and getters
 
 func _set_selected_trap_index(idx: int) -> void:
-    selected_trap_index = idx
-    _log("Emit 'selected_trap_index_changed'")
-    emit_signal("selected_trap_index_changed", idx)
+	selected_trap_index = idx
+	_log("Emit 'selected_trap_index_changed'")
+	emit_signal("selected_trap_index_changed", idx)
 
 func _set_available_traps(traps: Array) -> void:
-    available_traps = traps
-    _log("Emit 'available_traps_changed'")
-    emit_signal("available_traps_changed")
+	available_traps = traps
+	_log("Emit 'available_traps_changed'")
+	emit_signal("available_traps_changed")
 
 # Utility
 func _log(msg: String) -> void:
-    print("[BuildPhaseState]: %s" % msg)
+	print("[BuildPhaseState]: %s" % msg)
