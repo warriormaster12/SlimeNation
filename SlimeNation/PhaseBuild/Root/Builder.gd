@@ -12,6 +12,7 @@ const CELL_SIZE = 16
 
 var cursor_pos: Vector2 = Vector2()
 var trap_ghost: Node = null
+var can_place: bool = false
 
 
 func _init() -> void:
@@ -24,6 +25,7 @@ func select_trap(idx: int) -> void:
 		trap_ghost.queue_free()
 		remove_child(trap_ghost)
 		trap_ghost = null
+		can_place = false
 	if self.__traps.empty() or idx < 0:
 		self.__index = -1 # Invalid value
 		_log("Deselect trap")
@@ -35,10 +37,14 @@ func select_trap(idx: int) -> void:
 		if nodeScene == null:
 			_log("No resource loaded for '%s'" % name)
 			return
+		can_place = true
 		trap_ghost = nodeScene.instance()
 		trap_ghost.z_index = 10
-		trap_ghost.position = cursor_pos
+		trap_ghost.position = _fit_to_cell(cursor_pos)
 		trap_ghost.modulate = Color(1, 1, 1, 0.5)
+		var _err
+		_err = trap_ghost.get_node("Collider").connect("area_entered", self, "_on_Ghost_area_entered")
+		_err = trap_ghost.get_node("Collider").connect("area_exited", self, "_on_Ghost_area_exited")
 		add_child(trap_ghost)
 
 func refresh_traps() -> void:
@@ -57,12 +63,18 @@ func _process(_delta):
 	if self.__index == -1:
 		return
 	if trap_ghost != null:
+		cursor_pos = get_viewport().get_mouse_position()
 		trap_ghost.position = _fit_to_cell(cursor_pos)
 
-func _unhandled_input(_event):
-	if self.__index == -1:
-		return
-	cursor_pos = get_viewport().get_mouse_position()
+# Trap ghost signals
+
+func _on_Ghost_area_entered(_area: Area2D):
+	can_place = false
+	trap_ghost.modulate = Color(0.5, 0, 0, 0.5)
+
+func _on_Ghost_area_exited(_area: Area2D):
+	can_place = true
+	trap_ghost.modulate = Color(1, 1, 1, 0.5)
 
 # EntityDB signals
 
@@ -75,7 +87,7 @@ func _on_EntityDb_unregister_trap(_name: String):
 # InputHandler signals
 
 func _on_InputHandler_place_trap(x: int, y: int):
-	if self.__index == -1:
+	if self.__index == -1 or not can_place:
 		return
 	name = self.__traps[self.__index]
 	if not EntityDb.has_trap_id(name):
