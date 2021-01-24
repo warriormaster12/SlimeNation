@@ -6,20 +6,7 @@
 
 [node name="Root" type="Node"]
 
-[node name="Builder" type="Node2D" parent="."]
-script = ExtResource( 1 )
-container_path = NodePath("../TrapContainer")
-
-[node name="InputHandler" type="Node2D" parent="."]
-script = ExtResource( 2 )
-
-[node name="UIRoot" type="Control" parent="."]
-anchor_right = 1.0
-anchor_bottom = 1.0
-mouse_filter = 2
-__meta__ = {
-"_edit_use_anchors_": false
-}
+[node name="UIRoot" type="CanvasLayer" parent="."]
 
 [node name="BuildMenu" parent="UIRoot" instance=ExtResource( 3 )]
 anchor_left = 1.0
@@ -27,8 +14,17 @@ margin_left = -160.0
 margin_right = 20.0
 grow_horizontal = 0
 
+[node name="Builder" type="Node2D" parent="."]
+script = ExtResource( 1 )
+container_path = NodePath("../TrapContainer")
+
+[node name="InputHandler" type="Node2D" parent="."]
+script = ExtResource( 2 )
+
 [node name="TrapContainer" type="Node2D" parent="."]
+[connection signal="state_changed" from="UIRoot/BuildMenu" to="Builder" method="_on_BuildMenu_state_changed"]
 [connection signal="place_trap" from="InputHandler" to="Builder" method="_on_InputHandler_place_trap"]
 [connection signal="select_next_trap" from="InputHandler" to="Builder" method="_on_InputHandler_select_next_trap"]
 [connection signal="select_prev_trap" from="InputHandler" to="Builder" method="_on_InputHandler_select_prev_trap"]
 [connection signal="select_trap" from="InputHandler" to="Builder" method="_on_InputHandler_select_trap"]
+[connection signal="toggle_build_menu" from="InputHandler" to="UIRoot/BuildMenu" method="_on_InputHandler_toggle_build_menu"]

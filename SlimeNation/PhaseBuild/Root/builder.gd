@@ -15,16 +15,16 @@ var trap_ghost: Node = null
 
 
 func _init() -> void:
-    __index = 0
-    refresh_traps()
-    var _err = EntityDb.connect("register_trap", self, "_on_EntityDb_register_trap")
+    var _err
+    _err = EntityDb.connect("register_trap", self, "_on_EntityDb_register_trap")
+    _err = EntityDb.connect("unregister_trap", self, "_on_EntityDb_unregister_trap")
 
 func select_trap(idx: int) -> void:
     if trap_ghost != null:
         trap_ghost.queue_free()
         remove_child(trap_ghost)
         trap_ghost = null
-    if self.__traps.empty():
+    if self.__traps.empty() or idx < 0:
         self.__index = -1 # Invalid value
         _log("Deselect trap")
     else:
@@ -50,17 +50,19 @@ func refresh_traps() -> void:
 
 # Built-in functions
 
+func _ready():
+    refresh_traps()
+
 func _process(_delta):
     if self.__index == -1:
         return
     if trap_ghost != null:
         trap_ghost.position = _fit_to_cell(cursor_pos)
 
-func _unhandled_input(event):
+func _unhandled_input(_event):
     if self.__index == -1:
         return
-    if event is InputEventMouseMotion:
-        cursor_pos = event.position
+    cursor_pos = get_viewport().get_mouse_position()
 
 # EntityDB signals
 
@@ -94,10 +96,18 @@ func _on_InputHandler_select_trap(index: int):
     select_trap(index)
 
 func _on_InputHandler_select_next_trap():
-    select_trap(self.__index + 1)
+    select_trap(_wrap_index(self.__index + 1, self.__traps))
 
 func _on_InputHandler_select_prev_trap():
-    select_trap(self.__index - 1)
+    select_trap(_wrap_index(self.__index - 1, self.__traps))
+
+# BuildMenu signals
+
+func _on_BuildMenu_state_changed(is_open: bool):
+    if is_open:
+        select_trap(0)
+    else:
+        select_trap(-1)
 
 # Utility
 

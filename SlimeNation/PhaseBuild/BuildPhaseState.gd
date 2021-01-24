@@ -3,7 +3,7 @@ extends Node
 
 signal selected_trap_index_changed(index)
 # Index into available_traps or -1
-var selected_trap_index: int setget _set_selected_trap_index
+var selected_trap_index: int = -1 setget _set_selected_trap_index
 
 signal available_traps_changed()
 # String[]: Names of the traps
