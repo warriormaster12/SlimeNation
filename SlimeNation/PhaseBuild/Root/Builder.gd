@@ -37,6 +37,7 @@ func place_trap() -> void:
 	var pos = _fit_to_cell(cursor_pos)
 	var node = nodeScene.instance()
 	node.position = pos
+	node.rotation = ghost_rotation_deg * PI / 180.0
 	container.add_child(node)
 	_log("Build '%s (id: %s)' at (%d, %d)" % [name, id, pos.x, pos.y])
 
