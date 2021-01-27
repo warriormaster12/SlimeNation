@@ -6,6 +6,4 @@
 
 [node name="BuildRoot" parent="." instance=ExtResource( 1 )]
 
-[node name="Node2D" type="Node2D" parent="."]
-
 [editable path="BuildRoot"]
