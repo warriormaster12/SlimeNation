@@ -22,8 +22,8 @@ container_path = NodePath("../TrapContainer")
 script = ExtResource( 2 )
 
 [node name="TrapContainer" type="Node2D" parent="."]
-
 [connection signal="state_changed" from="UIRoot/BuildMenu" to="Builder" method="_on_BuildMenu_state_changed"]
+[connection signal="trap_selected" from="UIRoot/BuildMenu" to="Builder" method="_on_BuildMenu_trap_selected"]
 [connection signal="place_trap" from="InputHandler" to="Builder" method="_on_InputHandler_place_trap"]
 [connection signal="rotate_trap" from="InputHandler" to="Builder" method="_on_InputHandler_rotate_trap"]
 [connection signal="select_next_trap" from="InputHandler" to="Builder" method="_on_InputHandler_select_next_trap"]

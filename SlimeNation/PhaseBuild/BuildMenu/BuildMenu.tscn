@@ -56,3 +56,4 @@ rect_min_size = Vector2( 128, 0 )
 size_flags_vertical = 3
 custom_constants/separation = 8
 script = ExtResource( 3 )
+[connection signal="trap_selected" from="Margin/Scroll/HBox/TrapList" to="." method="_on_TrapList_trap_selected"]

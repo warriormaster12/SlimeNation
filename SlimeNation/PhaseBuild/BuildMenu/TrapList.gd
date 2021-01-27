@@ -1,5 +1,7 @@
 extends VBoxContainer
 
+signal trap_selected(index)
+
 var trap_icon = load("res://PhaseBuild/BuildMenu/TrapIcon/TrapIcon.tscn")
 var selected_item: Control
 
@@ -33,5 +35,4 @@ func select_item(index: int) -> void:
 
 func _on_TrapIcon_selected(item: Control):
 	var index = item.get_index()
-	BuildPhaseState.selected_trap_index = index
-	select_item(index)
+	emit_signal("trap_selected", index)

@@ -1,6 +1,7 @@
 extends WindowDialog
 
 signal state_changed(is_open)
+signal trap_selected(index)
 
 onready var __trap_list = $Margin/Scroll/HBox/TrapList
 var is_open = false
@@ -50,3 +51,9 @@ func _on_InputHandler_toggle_build_menu():
 		close_menu()
 	else:
 		open_menu()
+
+# TrapList signals
+
+func _on_TrapList_trap_selected(index: int) -> void:
+	# Forward signal
+	emit_signal("trap_selected", index)

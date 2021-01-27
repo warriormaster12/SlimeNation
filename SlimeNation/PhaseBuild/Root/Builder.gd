@@ -139,6 +139,9 @@ func _on_BuildMenu_state_changed(is_open: bool):
 	else:
 		select_trap(-1)
 
+func _on_BuildMenu_trap_selected(index: int):
+	select_trap(index)
+
 # Utility
 
 func _wrap_index(idx: int, arr: Array) -> int:
