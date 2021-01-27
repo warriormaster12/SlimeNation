@@ -1,7 +1,7 @@
 extends Node2D
 
 
-signal place_trap(x, y)
+signal place_trap()
 signal rotate_trap()
 signal select_trap(index)
 signal select_next_trap()
@@ -12,8 +12,7 @@ signal toggle_build_menu()
 func _unhandled_input(event):
 	if event.is_action_pressed("game_build_place"):
 		_log("Emit place_trap")
-		var pos = get_viewport().get_mouse_position();
-		emit_signal("place_trap", pos.x, pos.y)
+		emit_signal("place_trap")
 	elif event.is_action_pressed("game_build_rotate_trap"):
 		_log("Emit rotate_trap")
 		emit_signal("rotate_trap")

@@ -22,7 +22,7 @@ func _init() -> void:
 	_err = EntityDb.connect("register_trap", self, "_on_EntityDb_register_trap")
 	_err = EntityDb.connect("unregister_trap", self, "_on_EntityDb_unregister_trap")
 
-func place_trap(x: int, y: int) -> void:
+func place_trap() -> void:
 	if self.__index == -1 or colliders_counter > 0:
 		return
 	name = self.__traps[self.__index]
@@ -34,7 +34,7 @@ func place_trap(x: int, y: int) -> void:
 	if nodeScene == null:
 		_log("No resource loaded for '%s'" % name)
 		return
-	var pos = _fit_to_cell(Vector2(x, y))
+	var pos = _fit_to_cell(cursor_pos)
 	var node = nodeScene.instance()
 	node.position = pos
 	container.add_child(node)
@@ -91,7 +91,7 @@ func _process(_delta):
 	if self.__index == -1:
 		return
 	if trap_ghost != null:
-		cursor_pos = get_viewport().get_mouse_position()
+		cursor_pos = GameCamera.get_global_mouse_position()
 		trap_ghost.position = _fit_to_cell(cursor_pos)
 
 # Trap ghost signals
@@ -115,8 +115,8 @@ func _on_EntityDb_unregister_trap(_name: String):
 
 # InputHandler signals
 
-func _on_InputHandler_place_trap(x: int, y: int):
-	place_trap(x, y)
+func _on_InputHandler_place_trap():
+	place_trap()
 
 func _on_InputHandler_rotate_trap():
 	rotate_trap()
