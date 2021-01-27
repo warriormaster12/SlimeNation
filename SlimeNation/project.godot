@@ -28,7 +28,6 @@ config/icon="res://icon.png"
 
 EntityDb="*res://Scripts/Entity/EntityDB.gd"
 BuildPhaseState="*res://PhaseBuild/BuildPhaseState.gd"
-GameCamera="*res://Scripts/Camera.gd"
 
 [input]
 
