@@ -6,22 +6,32 @@
 
 [sub_resource type="Curve2D" id=1]
 _data = {
-"points": PoolVector2Array( 0, 0, 0, 0, 13.6249, 17.3115, 0, 0, 0, 0, 17.5934, 83.9823, 0, 0, 0, 0, 113.595, 116.592, 0, 0, 0, 0, 118.899, 209.223, 0, 0, 0, 0, 13.5399, 288.772, 0, 0, 0, 0, 31.2175, 354.18, 0, 0, 0, 0, 179.71, 383.525, 0, 0, 0, 0, 325.02, 338.27 )
+"points": PoolVector2Array( 0, 0, 0, 0, 13.6249, 17.3115, 0, 0, 0, 0, 17.5934, 83.9823, 0, 0, 0, 0, 108.435, 134.867, 0, 0, 0, 0, 118.899, 209.223, 0, 0, 0, 0, 13.5399, 288.772, 0, 0, 0, 0, 31.2175, 354.18, 0, 0, 0, 0, 179.71, 383.525, 0, 0, 0, 0, 325.02, 338.27 )
 }
 
 [node name="TestScene" type="Node2D"]
 
 [node name="Path1" parent="." instance=ExtResource( 3 )]
+position = Vector2( -13.2433, -15.3622 )
 
 [node name="Path2" parent="." instance=ExtResource( 3 )]
+position = Vector2( -13.2433, -15.3622 )
 curve = SubResource( 1 )
 
 [node name="SpawnPoint" parent="." instance=ExtResource( 2 )]
-position = Vector2( 13.773, 14.5676 )
+position = Vector2( 0.529714, -0.794613 )
 object_to_spawn = ExtResource( 1 )
 path = NodePath("../Path1")
+random_time_range = {
+"max": 5.0,
+"min": 3.0
+}
 
 [node name="SpawnPoint2" parent="." instance=ExtResource( 2 )]
-position = Vector2( 13.773, 14.8325 )
+position = Vector2( 0.529714, -0.529713 )
 object_to_spawn = ExtResource( 1 )
 path = NodePath("../Path2")
+random_time_range = {
+"max": 3.0,
+"min": 0.8
+}

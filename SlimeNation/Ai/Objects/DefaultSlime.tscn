@@ -39,4 +39,5 @@ script = ExtResource( 2 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
 [connection signal="health_changed" from="." to="ProgressBar" method="_on_DefaultSlime_health_changed"]

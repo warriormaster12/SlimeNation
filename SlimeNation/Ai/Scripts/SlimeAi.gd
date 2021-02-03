@@ -4,7 +4,7 @@ export (int) var speed = 100
 
 signal health_changed(current)
 
-const MAX_HEALTH: int = 100
+export(int) var MAX_HEALTH = 100
 
 var direction : Vector2
 var velocity : Vector2

@@ -8,12 +8,13 @@ onready var path_node = get_node(path)
 
 
 
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	_spawn_character()
-	#timer.autostart = true
-	#timer.wait_time = rand_range(random_time_range.min,random_time_range.max)
-	#timer.start()
+	timer.autostart = true
+	timer.one_shot = false
+	timer.wait_time = rand_range(random_time_range.min,random_time_range.max)
+	timer.start()
 
 
 
@@ -24,10 +25,15 @@ func _ready():
 func _on_Timer_timeout():
 	_spawn_character()
 	timer.wait_time = rand_range(random_time_range.min,random_time_range.max)
+	
 
 
 func _spawn_character():
 	var object_instance = object_to_spawn.instance()
-	object_instance.position = self.position
-	path_node.get_child(0).add_child(object_instance)
+	var path_follow = PathFollow2D.new()
+	path_follow.set_name("path_follow")
+	path_follow.rotate = false 
+	path_follow.loop = false 
+	path_node.add_child(path_follow)
+	path_follow.add_child(object_instance)
 
