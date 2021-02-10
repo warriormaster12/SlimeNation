@@ -12,6 +12,7 @@ onready var __nodes: Dictionary = {
 	0: preload("res://Scenes/FlyPaper/FlyPaper.tscn"),
 	1: preload("res://Scenes/Tower/Tower.tscn"),
 	2: preload("res://Scenes/Bullet/Bullet.tscn"),
+	3: preload("res://Scenes/DefaultSlime/DefaultSlime.tscn")
 }
 var traps = [] # String[]
 
@@ -25,6 +26,7 @@ func _load_nodes() -> void:
 	__node_id["FlyPaper"] = 0
 	__node_id["Tower"] = 1
 	__node_id["Bullet"] = 2
+	__node_id["DefaultSlime"] = 3
 
 func _load_traps() -> void:
 	traps.append("FlyPaper")
