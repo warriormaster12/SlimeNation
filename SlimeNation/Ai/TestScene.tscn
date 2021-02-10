@@ -1,13 +1,46 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://Ai/Objects/DefaultSlime.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Ai/Objects/SpawnPoint.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Ai/Objects/PathHandler.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Ai/Textures/TestTexture.png" type="Texture" id=4]
 
-[sub_resource type="Curve2D" id=1]
+[sub_resource type="Curve2D" id=4]
 _data = {
 "points": PoolVector2Array( 0, 0, 0, 0, 13.6249, 17.3115, 0, 0, 0, 0, 17.5934, 83.9823, 0, 0, 0, 0, 108.435, 134.867, 0, 0, 0, 0, 118.899, 209.223, 0, 0, 0, 0, 13.5399, 288.772, 0, 0, 0, 0, 31.2175, 354.18, 0, 0, 0, 0, 179.71, 383.525, 0, 0, 0, 0, 325.02, 338.27 )
 }
+
+[sub_resource type="Shader" id=2]
+code = "shader_type canvas_item;
+uniform sampler2D emissionTexture;
+uniform vec4 glowColor : hint_color = vec4(1.0f);
+
+void fragment()
+{
+	vec4 current_color = texture(TEXTURE, UV);
+	vec4 emission_color = texture(emissionTexture, UV);
+	
+	if(emission_color.r > 0f || emission_color.g > 0f || emission_color.b > 0f)
+	{
+		COLOR = emission_color + glowColor
+	}
+	else
+	{
+		COLOR = current_color;
+	}
+	
+}"
+
+[sub_resource type="ShaderMaterial" id=3]
+shader = SubResource( 2 )
+shader_param/glowColor = Color( 1, 0.654902, 0, 1 )
+shader_param/emissionTexture = ExtResource( 4 )
+
+[sub_resource type="Environment" id=5]
+background_mode = 4
+glow_enabled = true
+glow_strength = 0.47
+glow_blend_mode = 0
 
 [node name="TestScene" type="Node2D"]
 
@@ -15,8 +48,20 @@ _data = {
 position = Vector2( -13.2433, -15.3622 )
 
 [node name="Path2" parent="." instance=ExtResource( 3 )]
-position = Vector2( -13.2433, -15.3622 )
-curve = SubResource( 1 )
+position = Vector2( -13.0694, -15.3622 )
+scale = Vector2( 0.987158, 1 )
+curve = SubResource( 4 )
+
+[node name="Line2D" type="Line2D" parent="Path2"]
+material = SubResource( 3 )
+position = Vector2( 0, 0.749146 )
+points = PoolVector2Array( 13.9934, 21.7333, 17.7879, 83.913, 107.833, 134.274, 118.829, 209.076, 13.8911, 288.125, 32.2024, 353.647, 179.931, 383.347, 324.955, 338.297 )
+width = 130.0
+default_color = Color( 1, 1, 1, 1 )
+texture = ExtResource( 4 )
+texture_mode = 1
+begin_cap_mode = 2
+end_cap_mode = 2
 
 [node name="SpawnPoint" parent="." instance=ExtResource( 2 )]
 position = Vector2( 0.529714, -0.794613 )
@@ -35,3 +80,6 @@ random_time_range = {
 "max": 3.0,
 "min": 0.8
 }
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource( 5 )
