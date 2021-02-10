@@ -1,5 +1,7 @@
 extends Node2D
 
+var bulletScene = preload("Bullet/Bullet.tscn")
+
 const ROT_MAX = PI / 4
 
 var active: bool = false
@@ -33,7 +35,13 @@ func _update_rotation() -> void:
 		rotation = lerp_angle(rotation, rot, ROT_MAX / rot_dist)
 
 func _update_shooting() -> void:
-	pass
+	if targets.empty():
+		return
+	var instance = bulletScene.instance()
+	instance.global_position = global_position
+	if instance.has_method("set_direction"):
+		instance.set_direction(Vector2(cos(rotation), sin(rotation)))
+	get_parent().add_child(instance)
 
 func _find_closest_target() -> Node2D:
 	var p0 = global_position
