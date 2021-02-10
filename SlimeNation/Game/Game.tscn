@@ -1,22 +1,22 @@
 [gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://PhaseBuild/Root/Root.tscn" type="PackedScene" id=1]
-[ext_resource path="res://Ai/Objects/PathHandler.tscn" type="PackedScene" id=2]
-[ext_resource path="res://Ai/Objects/SpawnPoint.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Game/WorldEnvironment.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Ai/Objects/Spawner.tscn" type="PackedScene" id=4]
 
 [sub_resource type="Curve2D" id=1]
 _data = {
-"points": PoolVector2Array( 0, 0, 0, 0, 5.1833, 12.8365, 0, 0, 0, 0, 200.408, 20.9815, 0, 0, 0, 0, 462.9, 50.5285, 0, 0, 0, 0, 710.964, 437.778, 0, 0, 0, 0, 410.144, 758.802 )
+"points": PoolVector2Array( 0, 0, 0, 0, 0.388977, 29.3766, 0, 0, 0, 0, -3.11853, 986.388, 0, 0, 0, 0, 515.296, 1435.88, 0, 0, 0, 0, 1195.53, 1435.88 )
 }
 
 [sub_resource type="Curve2D" id=2]
 _data = {
-"points": PoolVector2Array( 0, 0, 0, 0, -13.0856, 14.0964, 0, 0, 0, 0, -222.924, 118.999, 0, 0, 0, 0, -389.049, 304.205, 0, 0, 0, 0, -396.936, 402.164, 0, 0, 0, 0, -392.416, 477.064, 0, 0, 0, 0, -290.272, 598.29, 0, 0, 0, 0, -145.475, 672.372, 0, 0, 0, 0, 90.2423, 786.864 )
+"points": PoolVector2Array( 0, 0, 0, 0, 0.388977, 29.3766, 0, 0, 0, 0, 476.34, 578.848, 0, 0, 0, 0, 904.856, 1085.28, 0, 0, 0, 0, 1195.53, 1435.88 )
 }
 
 [sub_resource type="Curve2D" id=3]
 _data = {
-"points": PoolVector2Array( 0, 0, 0, 0, 0.415649, 16.0366, 0, 0, 0, 0, 260.827, 783.801 )
+"points": PoolVector2Array( 0, 0, 0, 0, 0.388977, 29.3766, 0, 0, 0, 0, 802.56, 31.1743, 0, 0, 0, 0, 1192.05, 392.835, 0, 0, 0, 0, 1195.53, 1435.88 )
 }
 
 [node name="Game" type="Node2D"]
@@ -26,33 +26,53 @@ _data = {
 [node name="MapRoot" type="Node" parent="."]
 
 [node name="SpawnPoint" parent="MapRoot" instance=ExtResource( 4 )]
-path = NodePath("../Path")
 random_time_range = {
 "max": 3.0,
 "min": 1.0
 }
 
+[node name="Path" parent="MapRoot/SpawnPoint" index="1"]
+curve = SubResource( 1 )
+
+[node name="Line2D" parent="MapRoot/SpawnPoint/Path" index="0"]
+points = PoolVector2Array( -0.356689, 27.9564, -6.0199, 986.933, 514.999, 1436.22, 1190.81, 1434.33 )
+
 [node name="SpawnPoint2" parent="MapRoot" instance=ExtResource( 4 )]
-path = NodePath("../Path2")
 random_time_range = {
 "max": 5.0,
 "min": 3.0
 }
 
+[node name="Path" parent="MapRoot/SpawnPoint2" index="1"]
+curve = SubResource( 2 )
+
+[node name="Line2D" parent="MapRoot/SpawnPoint2/Path" index="0"]
+points = PoolVector2Array( 1.53107, 27.9564, 1194.59, 1432.44 )
+
 [node name="SpawnPoint3" parent="MapRoot" instance=ExtResource( 4 )]
-path = NodePath("../Path3")
 random_time_range = {
 "max": 10.0,
 "min": 5.0
 }
 
-[node name="Path" parent="MapRoot" instance=ExtResource( 2 )]
-curve = SubResource( 1 )
-
-[node name="Path2" parent="MapRoot" instance=ExtResource( 2 )]
-curve = SubResource( 2 )
-
-[node name="Path3" parent="MapRoot" instance=ExtResource( 2 )]
+[node name="Path" parent="MapRoot/SpawnPoint3" index="1"]
 curve = SubResource( 3 )
 
+[node name="Line2D" parent="MapRoot/SpawnPoint3/Path" index="0"]
+points = PoolVector2Array( 1.53107, 27.9564, 801.937, 31.7319, 1188.93, 392.292, 1190.81, 1432.44 )
+
+[node name="WorldEnvironment" parent="." instance=ExtResource( 2 )]
+
 [editable path="BuildRoot"]
+
+[editable path="MapRoot/SpawnPoint"]
+
+[editable path="MapRoot/SpawnPoint/Path"]
+
+[editable path="MapRoot/SpawnPoint2"]
+
+[editable path="MapRoot/SpawnPoint2/Path"]
+
+[editable path="MapRoot/SpawnPoint3"]
+
+[editable path="MapRoot/SpawnPoint3/Path"]

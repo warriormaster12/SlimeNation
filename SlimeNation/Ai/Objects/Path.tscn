@@ -1,0 +1,23 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://Entities/Path/Path.tres" type="Material" id=1]
+[ext_resource path="res://Entities/Path/PathTexture.png" type="Texture" id=2]
+
+[sub_resource type="Curve2D" id=1]
+resource_local_to_scene = true
+_data = {
+"points": PoolVector2Array( 0, 0, 0, 0, 12, 14, 0, 0, 0, 0, 268.361, 102.924 )
+}
+
+[node name="Path" type="Path2D"]
+curve = SubResource( 1 )
+
+[node name="Line2D" type="Line2D" parent="."]
+material = ExtResource( 1 )
+z_index = -5
+width = 120.0
+default_color = Color( 1, 1, 1, 1 )
+texture = ExtResource( 2 )
+texture_mode = 1
+begin_cap_mode = 2
+end_cap_mode = 2
