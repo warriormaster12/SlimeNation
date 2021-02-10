@@ -1,4 +1,4 @@
-extends KinematicBody2D
+extends Node2D
 
 export (int) var speed = 100
 
@@ -32,3 +32,12 @@ func _follow_path(delta):
 func _set_health(hp: int) -> void:
 	health = hp
 	emit_signal("health_changed", health)
+
+
+func _on_Collider_area_entered(area: Area2D):
+	if area.is_in_group("Bullets"):
+		var damage = 1
+		if "DAMAGE" in area.get_parent():
+			damage = area.get_parent().DAMAGE
+		self.health -= damage
+		area.get_parent().queue_free()

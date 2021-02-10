@@ -70,14 +70,14 @@ func deactivate():
 	active = false
 	targets.clear()
 
-func _on_Range_body_entered(body: KinematicBody2D):
+func _on_Range_area_entered(area: Area2D):
 	if not active:
 		return
-	if body.is_in_group("Enemies"):
-		targets.push_back(body)
+	if area.is_in_group("Enemies"):
+		targets.push_back(area)
 
-func _on_Range_body_exited(body: KinematicBody2D):
+func _on_Range_area_exited(area: Area2D):
 	if not active:
 		return
-	if body.is_in_group("Enemies"):
-		targets.remove(targets.find(body))
+	if area.is_in_group("Enemies"):
+		targets.remove(targets.find(area))

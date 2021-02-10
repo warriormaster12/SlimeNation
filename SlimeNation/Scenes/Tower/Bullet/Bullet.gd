@@ -1,6 +1,7 @@
-extends KinematicBody2D
+extends Node2D
 
 const SPEED = 500
+const DAMAGE = 7
 var direction = Vector2(0, 0)
 
 func _process(delta):
