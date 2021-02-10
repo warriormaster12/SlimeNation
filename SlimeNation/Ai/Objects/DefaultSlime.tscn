@@ -15,7 +15,9 @@ border_color = Color( 0, 0, 0, 1 )
 bg_color = Color( 0.705882, 0, 0, 1 )
 border_color = Color( 0, 0, 0, 1 )
 
-[node name="DefaultSlime" type="KinematicBody2D"]
+[node name="DefaultSlime" type="KinematicBody2D" groups=[
+"Enemies",
+]]
 script = ExtResource( 3 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
@@ -39,5 +41,4 @@ script = ExtResource( 2 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
-
 [connection signal="health_changed" from="." to="ProgressBar" method="_on_DefaultSlime_health_changed"]

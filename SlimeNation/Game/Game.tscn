@@ -12,12 +12,12 @@ _data = {
 
 [sub_resource type="Curve2D" id=2]
 _data = {
-"points": PoolVector2Array( 0, 0, 0, 0, -13.0856, 14.0964, 0, 0, 0, 0, -222.924, 118.999, 0, 0, 0, 0, -389.049, 304.205, 0, 0, 0, 0, -392.416, 477.064, 0, 0, 0, 0, -290.272, 598.29, 0, 0, 0, 0, -145.475, 672.372, 0, 0, 0, 0, 90.2423, 786.864 )
+"points": PoolVector2Array( 0, 0, 0, 0, -13.0856, 14.0964, 0, 0, 0, 0, -222.924, 118.999, 0, 0, 0, 0, -389.049, 304.205, 0, 0, 0, 0, -396.936, 402.164, 0, 0, 0, 0, -392.416, 477.064, 0, 0, 0, 0, -290.272, 598.29, 0, 0, 0, 0, -145.475, 672.372, 0, 0, 0, 0, 90.2423, 786.864 )
 }
 
 [sub_resource type="Curve2D" id=3]
 _data = {
-"points": PoolVector2Array( 0, 0, 0, 0, 4.40271, 26.2234, 0, 0, 0, 0, 283.384, 779.073 )
+"points": PoolVector2Array( 0, 0, 0, 0, 0.415649, 16.0366, 0, 0, 0, 0, 260.827, 783.801 )
 }
 
 [node name="Game" type="Node2D"]
@@ -44,8 +44,8 @@ random_time_range = {
 object_to_spawn = ExtResource( 3 )
 path = NodePath("../Path3")
 random_time_range = {
-"max": 4.0,
-"min": 2.0
+"max": 10.0,
+"min": 5.0
 }
 
 [node name="Path" parent="BuildRoot" instance=ExtResource( 2 )]

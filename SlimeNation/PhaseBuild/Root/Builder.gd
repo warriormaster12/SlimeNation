@@ -38,6 +38,8 @@ func place_trap() -> void:
 	var node = nodeScene.instance()
 	node.position = pos
 	node.rotation = ghost_rotation_deg * PI / 180.0
+	if node.has_method('activate'):
+		node.activate()
 	container.add_child(node)
 	_log("Build '%s (id: %s)' at (%d, %d)" % [name, id, pos.x, pos.y])
 
@@ -97,11 +99,11 @@ func _process(_delta):
 
 # Trap ghost signals
 
-func _on_Ghost_area_entered(_area: Area2D):
+func _on_Ghost_area_entered(area: Area2D):
 	colliders_counter += 1
 	trap_ghost.modulate = Color(0.5, 0, 0, 0.5)
 
-func _on_Ghost_area_exited(_area: Area2D):
+func _on_Ghost_area_exited(area: Area2D):
 	colliders_counter -= 1
 	if colliders_counter == 0:
 		trap_ghost.modulate = Color(1, 1, 1, 0.5)

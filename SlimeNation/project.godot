@@ -21,7 +21,7 @@ _global_script_class_icons={
 [application]
 
 config/name="SlimeNation"
-run/main_scene="res://PhaseBuild/Root/Root.tscn"
+run/main_scene="res://Game/Game.tscn"
 config/icon="res://icon.png"
 
 [autoload]
