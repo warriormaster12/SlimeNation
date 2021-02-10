@@ -1,0 +1,12 @@
+[gd_resource type="ShaderMaterial" load_steps=3 format=2]
+
+[ext_resource path="res://Objects/Path/Path.shader" type="Shader" id=1]
+
+[sub_resource type="StreamTexture" id=1]
+flags = 6
+load_path = "res://.import/PathTexture.png-3be6cbdf16c9cfb76d677f730c620b3b.stex"
+
+[resource]
+shader = ExtResource( 1 )
+shader_param/glowColor = Color( 0, 0.882353, 1, 1 )
+shader_param/emissionTexture = SubResource( 1 )
