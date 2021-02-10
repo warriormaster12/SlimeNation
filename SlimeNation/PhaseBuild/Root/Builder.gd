@@ -26,10 +26,10 @@ func place_trap() -> void:
 	if self.__index == -1 or colliders_counter > 0:
 		return
 	name = self.__traps[self.__index]
-	if not EntityDb.has_trap_id(name):
+	if not EntityDb.has_entity(name):
 		_log("Invalid trap name '%s'" % name)
 		return
-	var id = EntityDb.get_trap_id(name)
+	var id = EntityDb.get_entity_id(name)
 	var nodeScene = EntityDb.get_entity_node(name)
 	if nodeScene == null:
 		_log("No resource loaded for '%s'" % name)
@@ -81,7 +81,7 @@ func select_trap(idx: int) -> void:
 func refresh_traps() -> void:
 	_log("Refresh trap IDs")
 	# TODO: Using all traps for now, change later
-	self.__traps = EntityDb.get_all_trap_ids()
+	self.__traps = EntityDb.get_trap_names()
 	_log("Traps: %s" % [self.__traps])
 	select_trap(self.__index)
 

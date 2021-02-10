@@ -1,7 +1,5 @@
 extends Node2D
 
-var bulletScene = preload("Bullet/Bullet.tscn")
-
 const ROT_MAX = PI / 4
 
 var active: bool = false
@@ -37,7 +35,7 @@ func _update_rotation() -> void:
 func _update_shooting() -> void:
 	if targets.empty():
 		return
-	var instance = bulletScene.instance()
+	var instance = EntityDb.get_entity_node("Bullet").instance()
 	instance.global_position = global_position
 	if instance.has_method("set_direction"):
 		instance.set_direction(Vector2(cos(rotation), sin(rotation)))
