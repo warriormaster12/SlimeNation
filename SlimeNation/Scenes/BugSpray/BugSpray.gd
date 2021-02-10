@@ -25,10 +25,8 @@ func _update_rotation() -> void:
 	var target = _find_closest_target()
 	if target == null:
 		return
-	print(targets.size())
 	var rot = target.global_position.angle_to_point(global_position)
 	var rot_dist = _angle_rad_dist(rotation, rot)
-	print(rotation, ", ", rot)
 	if rot_dist < ROT_MAX:
 		rotation = rot
 	else:
