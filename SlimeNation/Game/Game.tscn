@@ -23,34 +23,36 @@ _data = {
 
 [node name="BuildRoot" parent="." instance=ExtResource( 1 )]
 
-[node name="SpawnPoint" parent="BuildRoot" instance=ExtResource( 4 )]
+[node name="MapRoot" type="Node" parent="."]
+
+[node name="SpawnPoint" parent="MapRoot" instance=ExtResource( 4 )]
 path = NodePath("../Path")
 random_time_range = {
 "max": 3.0,
 "min": 1.0
 }
 
-[node name="SpawnPoint2" parent="BuildRoot" instance=ExtResource( 4 )]
+[node name="SpawnPoint2" parent="MapRoot" instance=ExtResource( 4 )]
 path = NodePath("../Path2")
 random_time_range = {
 "max": 5.0,
 "min": 3.0
 }
 
-[node name="SpawnPoint3" parent="BuildRoot" instance=ExtResource( 4 )]
+[node name="SpawnPoint3" parent="MapRoot" instance=ExtResource( 4 )]
 path = NodePath("../Path3")
 random_time_range = {
 "max": 10.0,
 "min": 5.0
 }
 
-[node name="Path" parent="BuildRoot" instance=ExtResource( 2 )]
+[node name="Path" parent="MapRoot" instance=ExtResource( 2 )]
 curve = SubResource( 1 )
 
-[node name="Path2" parent="BuildRoot" instance=ExtResource( 2 )]
+[node name="Path2" parent="MapRoot" instance=ExtResource( 2 )]
 curve = SubResource( 2 )
 
-[node name="Path3" parent="BuildRoot" instance=ExtResource( 2 )]
+[node name="Path3" parent="MapRoot" instance=ExtResource( 2 )]
 curve = SubResource( 3 )
 
 [editable path="BuildRoot"]

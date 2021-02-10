@@ -9,10 +9,10 @@ var __node_id: Dictionary = {}
 # [id]: PackedScene
 onready var __nodes: Dictionary = {
 	# Hard-coded scenes
-	0: preload("res://Scenes/FlyPaper/FlyPaper.tscn"),
-	1: preload("res://Scenes/Tower/Tower.tscn"),
-	2: preload("res://Scenes/Bullet/Bullet.tscn"),
-	3: preload("res://Scenes/DefaultSlime/DefaultSlime.tscn")
+	0: preload("res://Entities/FlyPaper/FlyPaper.tscn"),
+	1: preload("res://Entities/Tower/Tower.tscn"),
+	2: preload("res://Entities/Bullet/Bullet.tscn"),
+	3: preload("res://Entities/DefaultSlime/DefaultSlime.tscn")
 }
 var traps = [] # String[]
 

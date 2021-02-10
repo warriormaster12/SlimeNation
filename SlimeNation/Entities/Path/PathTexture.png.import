@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/Bullet.png-226c03cb13d38bf9c5a61be15aafa5ef.stex"
+path="res://.import/PathTexture.png-3be6cbdf16c9cfb76d677f730c620b3b.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Scenes/Bullet/Bullet.png"
-dest_files=[ "res://.import/Bullet.png-226c03cb13d38bf9c5a61be15aafa5ef.stex" ]
+source_file="res://Entities/Path/PathTexture.png"
+dest_files=[ "res://.import/PathTexture.png-3be6cbdf16c9cfb76d677f730c620b3b.stex" ]
 
 [params]
 
@@ -19,7 +19,7 @@ compress/lossy_quality=0.7
 compress/hdr_mode=0
 compress/bptc_ldr=0
 compress/normal_map=0
-flags/repeat=0
+flags/repeat=1
 flags/filter=true
 flags/mipmaps=false
 flags/anisotropic=false
