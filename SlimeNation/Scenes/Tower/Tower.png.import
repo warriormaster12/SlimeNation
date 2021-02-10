@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/Tower.png-714e89771cbb483a3ba92e10e4f6f861.stex"
+path="res://.import/Tower.png-5bb7135a354d734c9e7d8a8679771121.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Scenes/BugSpray/Tower.png"
-dest_files=[ "res://.import/Tower.png-714e89771cbb483a3ba92e10e4f6f861.stex" ]
+source_file="res://Scenes/Tower/Tower.png"
+dest_files=[ "res://.import/Tower.png-5bb7135a354d734c9e7d8a8679771121.stex" ]
 
 [params]
 

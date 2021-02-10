@@ -9,7 +9,7 @@ var __trap_id: Dictionary = {}
 onready var __nodes: Dictionary = {
 	# Hard-coded scenes
 	0: preload("res://Scenes/FlyPaper/FlyPaper.tscn"),
-	1: preload("res://Scenes/BugSpray/BugSpray.tscn")
+	1: preload("res://Scenes/Tower/Tower.tscn")
 }
 
 
@@ -20,7 +20,7 @@ func _init():
 func _load_traps() -> void:
 	# Not using register_trap_id() to avoid sending signals
 	__trap_id["FlyPaper"] = 0
-	__trap_id["BugSpray"] = 1
+	__trap_id["Tower"] = 1
 
 # Registers a trap id.
 # @param name The name of the trap
