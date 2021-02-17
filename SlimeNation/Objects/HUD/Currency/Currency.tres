@@ -1,9 +1,9 @@
 [gd_resource type="ShaderMaterial" load_steps=3 format=2]
 
 [ext_resource path="res://Shaders/Glow.shader" type="Shader" id=1]
-[ext_resource path="res://Entities/Tower/Tower.png" type="Texture" id=2]
+[ext_resource path="res://Objects/HUD/Currency/Currency.png" type="Texture" id=2]
 
 [resource]
 shader = ExtResource( 1 )
-shader_param/glowColor = Color( 0, 0.529412, 1, 1 )
+shader_param/glowColor = Color( 0.184314, 0.227451, 0.67451, 1 )
 shader_param/emissionTexture = ExtResource( 2 )

@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/Currency.png-f95def387ffddb3e2a2ede1ec970b4c1.stex"
+path="res://.import/Currency.png-ab9b266a733e1b0f241f95b1bae6a877.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Entities/Currency/Currency.png"
-dest_files=[ "res://.import/Currency.png-f95def387ffddb3e2a2ede1ec970b4c1.stex" ]
+source_file="res://Objects/HUD/Currency/Currency.png"
+dest_files=[ "res://.import/Currency.png-ab9b266a733e1b0f241f95b1bae6a877.stex" ]
 
 [params]
 
