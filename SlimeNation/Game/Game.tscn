@@ -4,7 +4,7 @@
 [ext_resource path="res://Game/WorldEnvironment.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Objects/HUD/HUD.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Objects/Spawner/Spawner.tscn" type="PackedScene" id=4]
-[ext_resource path="res://Audio/Music/DJ-Z3ph1 - System Core vol. 1.wav" type="AudioStream" id=5]
+[ext_resource path="res://Audio/Music/DJ-Z3ph1 - System Core vol. 1.ogg" type="AudioStream" id=5]
 
 [sub_resource type="Curve2D" id=1]
 _data = {
