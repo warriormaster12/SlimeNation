@@ -29,6 +29,9 @@ func _follow_path(delta):
 	var pos = path_follow.get_global_position()
 	direction = pos
 
+	if path_follow.unit_offset == 1.0:
+		self.queue_free()
+
 func _set_health(hp: int) -> void:
 	health = hp
 	emit_signal("health_changed", health)
