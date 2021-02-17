@@ -5,5 +5,5 @@
 
 [resource]
 shader = ExtResource( 1 )
-shader_param/glowColor = Color( 0.184314, 0.227451, 0.67451, 1 )
+shader_param/glowColor = Color( 0.101961, 0.180392, 0.980392, 1 )
 shader_param/emissionTexture = ExtResource( 2 )
