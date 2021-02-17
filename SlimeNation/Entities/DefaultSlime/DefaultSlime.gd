@@ -32,6 +32,8 @@ func _follow_path(delta):
 func _set_health(hp: int) -> void:
 	health = hp
 	emit_signal("health_changed", health)
+	if (health <= 0):
+		self.queue_free()
 
 
 func _on_Collider_area_entered(area: Area2D):

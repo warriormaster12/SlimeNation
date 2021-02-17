@@ -4,7 +4,6 @@
 
 [sub_resource type="StreamTexture" id=1]
 flags = 6
-load_path = "res://.import/PathTexture.png-3be6cbdf16c9cfb76d677f730c620b3b.stex"
 
 [resource]
 shader = ExtResource( 1 )
