@@ -7,11 +7,16 @@ margin_right = 40.0
 margin_bottom = 40.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
+custom_constants/margin_right = 16
+custom_constants/margin_top = 16
+custom_constants/margin_left = 16
+custom_constants/margin_bottom = 16
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="Currency" parent="." instance=ExtResource( 1 )]
-margin_top = 0.0
-margin_right = 68.0
-margin_bottom = 48.0
+margin_left = 16.0
+margin_top = 16.0
+margin_right = 108.0
+margin_bottom = 80.0

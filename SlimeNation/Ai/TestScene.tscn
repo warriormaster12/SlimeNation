@@ -24,7 +24,7 @@ shader = ExtResource( 8 )
 shader_param/glowColor = Color( 0, 0.529412, 1, 1 )
 shader_param/emissionTexture = ExtResource( 5 )
 
-[sub_resource type="Shader" id=5]
+[sub_resource type="Shader" id=4]
 code = "shader_type canvas_item;
 uniform sampler2D emissionTexture;
 uniform vec4 glowColor : hint_color = vec4(1.0f);
@@ -45,8 +45,8 @@ void fragment()
 	
 }"
 
-[sub_resource type="ShaderMaterial" id=4]
-shader = SubResource( 5 )
+[sub_resource type="ShaderMaterial" id=5]
+shader = SubResource( 4 )
 shader_param/glowColor = Color( 0, 1, 0.156863, 1 )
 
 [node name="TestScene" type="Node2D"]
@@ -94,7 +94,7 @@ scale = Vector2( 0.3, 0.3 )
 texture = ExtResource( 5 )
 
 [node name="Currency" type="Sprite" parent="."]
-material = SubResource( 4 )
+material = SubResource( 5 )
 position = Vector2( 693.985, 277.777 )
 
 [editable path="Path"]
