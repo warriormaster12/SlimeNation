@@ -64,9 +64,15 @@ points = PoolVector2Array( 1.53107, 27.9564, 801.937, 31.7319, 1188.93, 392.292,
 [node name="WorldEnvironment" parent="." instance=ExtResource( 2 )]
 
 [editable path="BuildRoot"]
+
 [editable path="MapRoot/SpawnPoint"]
+
 [editable path="MapRoot/SpawnPoint/Path"]
+
 [editable path="MapRoot/SpawnPoint2"]
+
 [editable path="MapRoot/SpawnPoint2/Path"]
+
 [editable path="MapRoot/SpawnPoint3"]
+
 [editable path="MapRoot/SpawnPoint3/Path"]
