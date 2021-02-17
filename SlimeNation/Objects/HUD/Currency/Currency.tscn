@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://Objects/HUD/Currency/Currency.png" type="Texture" id=1]
 [ext_resource path="res://Objects/HUD/Currency/Currency.tres" type="Material" id=2]
+[ext_resource path="res://Objects/HUD/Currency/Currency.gd" type="Script" id=3]
 
 [node name="Currency" type="HBoxContainer"]
 margin_right = 128.0
@@ -23,3 +24,4 @@ margin_right = 92.0
 margin_bottom = 39.0
 text = "100"
 valign = 1
+script = ExtResource( 3 )

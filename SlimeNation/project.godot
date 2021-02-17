@@ -29,6 +29,7 @@ config/icon="res://icon.png"
 EntityDb="*res://GlobalScripts/EntityDB.gd"
 BuildPhaseState="*res://PhaseBuild/BuildPhaseState.gd"
 GameCamera="*res://GlobalScripts/Camera.gd"
+PlayerState="*res://GlobalScripts/PlayerState.gd"
 
 [display]
 
