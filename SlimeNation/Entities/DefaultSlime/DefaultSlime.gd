@@ -10,6 +10,8 @@ var direction : Vector2
 var velocity : Vector2
 var health: int setget _set_health
 
+var alive = true
+
 onready var path_follow = get_parent()
 
 func _ready():
@@ -35,7 +37,9 @@ func _follow_path(delta):
 func _set_health(hp: int) -> void:
 	health = hp
 	emit_signal("health_changed", health)
-	if (health <= 0):
+	if (alive and health <= 0):
+		alive = false
+		PlayerState.money += 5
 		self.queue_free()
 
 

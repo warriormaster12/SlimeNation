@@ -11,6 +11,9 @@ var __traps: Array = [] setget _set_traps, _get_traps
 const CELL_SIZE = 16
 const ROTATE_STEP_DEG = 90.0
 
+# A constant trap cost (for now)
+const TRAP_COST = 15
+
 var cursor_pos: Vector2 = Vector2()
 var trap_ghost: Node = null
 var colliders_counter: int = 0
@@ -23,6 +26,8 @@ func _init() -> void:
 	_err = EntityDb.connect("unregister_trap", self, "_on_EntityDb_unregister_trap")
 
 func place_trap() -> void:
+	if PlayerState.money < TRAP_COST:
+		return
 	if self.__index == -1 or colliders_counter > 0:
 		return
 	name = self.__traps[self.__index]
@@ -42,6 +47,9 @@ func place_trap() -> void:
 		node.activate()
 	container.add_child(node)
 	_log("Build '%s (id: %s)' at (%d, %d)" % [name, id, pos.x, pos.y])
+
+	# TODO: Move this up somewhere
+	PlayerState.money -= TRAP_COST
 
 func rotate_trap() -> void:
 	if self.__index == -1 or trap_ghost == null:

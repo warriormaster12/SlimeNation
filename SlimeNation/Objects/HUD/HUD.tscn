@@ -18,5 +18,5 @@ __meta__ = {
 [node name="Currency" parent="." instance=ExtResource( 1 )]
 margin_left = 16.0
 margin_top = 16.0
-margin_right = 108.0
+margin_right = 143.0
 margin_bottom = 80.0

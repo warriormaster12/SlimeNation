@@ -79,9 +79,15 @@ autoplay = true
 bus = "Music"
 
 [editable path="BuildRoot"]
+
 [editable path="MapRoot/SpawnPoint"]
+
 [editable path="MapRoot/SpawnPoint/Path"]
+
 [editable path="MapRoot/SpawnPoint2"]
+
 [editable path="MapRoot/SpawnPoint2/Path"]
+
 [editable path="MapRoot/SpawnPoint3"]
+
 [editable path="MapRoot/SpawnPoint3/Path"]
