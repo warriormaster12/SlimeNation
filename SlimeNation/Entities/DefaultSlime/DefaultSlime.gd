@@ -13,6 +13,7 @@ var health: int setget _set_health
 var alive = true
 
 onready var path_follow = get_parent()
+onready var sfx_death = $SfxDeath
 
 func _ready():
 	self.health = MAX_HEALTH
@@ -24,6 +25,13 @@ func _physics_process(delta):
 func _follow_path(delta):
 	if not path_follow is PathFollow2D:
 		return
+
+	if not alive:
+		# Wait until sfx_death has finished
+		if not sfx_death.playing:
+			self.queue_free()
+		return
+
 	#last position
 	var prepos = path_follow.get_global_position()
 	path_follow.set_offset(path_follow.get_offset() + speed * delta)
@@ -34,13 +42,14 @@ func _follow_path(delta):
 	if path_follow.unit_offset == 1.0:
 		self.queue_free()
 
+
 func _set_health(hp: int) -> void:
 	health = hp
 	emit_signal("health_changed", health)
 	if (alive and health <= 0):
-		alive = false
 		PlayerState.money += 5
-		self.queue_free()
+		alive = false
+		sfx_death.play()
 
 
 func _on_Collider_area_entered(area: Area2D):
