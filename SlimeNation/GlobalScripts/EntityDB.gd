@@ -9,10 +9,9 @@ var __node_id: Dictionary = {}
 # [id]: PackedScene
 onready var __nodes: Dictionary = {
 	# Hard-coded scenes
-	0: preload("res://Entities/FlyPaper/FlyPaper.tscn"),
-	1: preload("res://Entities/Tower/Tower.tscn"),
-	2: preload("res://Entities/Bullet/Bullet.tscn"),
-	3: preload("res://Entities/DefaultSlime/DefaultSlime.tscn")
+	0: preload("res://Entities/Tower/Tower.tscn"),
+	1: preload("res://Entities/Bullet/Bullet.tscn"),
+	2: preload("res://Entities/DefaultSlime/DefaultSlime.tscn")
 }
 var traps = [] # String[]
 
@@ -23,13 +22,11 @@ func _init():
 	_load_traps()
 
 func _load_nodes() -> void:
-	__node_id["FlyPaper"] = 0
-	__node_id["Tower"] = 1
-	__node_id["Bullet"] = 2
-	__node_id["DefaultSlime"] = 3
+	__node_id["Tower"] = 0
+	__node_id["Bullet"] = 1
+	__node_id["DefaultSlime"] = 2
 
 func _load_traps() -> void:
-	traps.append("FlyPaper")
 	traps.append("Tower")
 
 func _register_entity(name: String, scene: PackedScene) -> void:
