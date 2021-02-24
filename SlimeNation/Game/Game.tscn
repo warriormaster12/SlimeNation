@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=15 format=2]
 
 [ext_resource path="res://PhaseBuild/Root/Root.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Game/WorldEnvironment.tscn" type="PackedScene" id=2]
@@ -11,15 +11,39 @@ _data = {
 "points": PoolVector2Array( 0, 0, 0, 0, 0.388977, 29.3766, 0, 0, 0, 0, -3.11853, 986.388, 0, 0, 0, 0, 515.296, 1435.88, 0, 0, 0, 0, 1195.53, 1435.88 )
 }
 
+[sub_resource type="RectangleShape2D" id=4]
+resource_local_to_scene = true
+extents = Vector2( 18.5002, 496.421 )
+
+[sub_resource type="RectangleShape2D" id=5]
+resource_local_to_scene = true
+extents = Vector2( 15.3895, 354.22 )
+
 [sub_resource type="Curve2D" id=2]
 _data = {
 "points": PoolVector2Array( 0, 0, 0, 0, 0.388977, 29.3766, 0, 0, 0, 0, 476.34, 578.848, 0, 0, 0, 0, 904.856, 1085.28, 0, 0, 0, 0, 1195.53, 1435.88 )
 }
 
+[sub_resource type="RectangleShape2D" id=6]
+resource_local_to_scene = true
+extents = Vector2( 18.5002, 932.035 )
+
 [sub_resource type="Curve2D" id=3]
 _data = {
 "points": PoolVector2Array( 0, 0, 0, 0, 0.388977, 29.3766, 0, 0, 0, 0, 802.56, 31.1743, 0, 0, 0, 0, 1192.05, 392.835, 0, 0, 0, 0, 1195.53, 1435.88 )
 }
+
+[sub_resource type="RectangleShape2D" id=7]
+resource_local_to_scene = true
+extents = Vector2( 18.5002, 522.602 )
+
+[sub_resource type="RectangleShape2D" id=8]
+resource_local_to_scene = true
+extents = Vector2( 15.3895, 272.396 )
+
+[sub_resource type="RectangleShape2D" id=9]
+resource_local_to_scene = true
+extents = Vector2( 15.3895, 411.559 )
 
 [node name="Game" type="Node2D"]
 
@@ -47,6 +71,20 @@ curve = SubResource( 1 )
 [node name="Line2D" parent="MapRoot/SpawnPoint/Path" index="0"]
 points = PoolVector2Array( -0.356689, 27.9564, -6.0199, 986.933, 514.999, 1436.22, 1190.81, 1434.33 )
 
+[node name="Segment1" type="CollisionShape2D" parent="MapRoot/SpawnPoint/Path/Colliders" index="0"]
+position = Vector2( -4.24033, 496.536 )
+shape = SubResource( 4 )
+
+[node name="Segment2" type="CollisionShape2D" parent="MapRoot/SpawnPoint/Path/Colliders" index="1"]
+position = Vector2( 254.46, 1212.93 )
+rotation = -0.859168
+shape = SubResource( 5 )
+
+[node name="Segment3" type="CollisionShape2D" parent="MapRoot/SpawnPoint/Path/Colliders" index="2"]
+position = Vector2( 862.763, 1436.87 )
+rotation = -1.56884
+shape = SubResource( 5 )
+
 [node name="SpawnPoint2" parent="MapRoot" instance=ExtResource( 4 )]
 random_time_range = {
 "max": 5.0,
@@ -59,6 +97,11 @@ curve = SubResource( 2 )
 [node name="Line2D" parent="MapRoot/SpawnPoint2/Path" index="0"]
 points = PoolVector2Array( 1.53107, 27.9564, 1194.59, 1432.44 )
 
+[node name="Segment1" type="CollisionShape2D" parent="MapRoot/SpawnPoint2/Path/Colliders" index="0"]
+position = Vector2( 592.004, 726.086 )
+rotation = -0.706606
+shape = SubResource( 6 )
+
 [node name="SpawnPoint3" parent="MapRoot" instance=ExtResource( 4 )]
 random_time_range = {
 "max": 10.0,
@@ -70,6 +113,20 @@ curve = SubResource( 3 )
 
 [node name="Line2D" parent="MapRoot/SpawnPoint3/Path" index="0"]
 points = PoolVector2Array( 1.53107, 27.9564, 801.937, 31.7319, 1188.93, 392.292, 1190.81, 1432.44 )
+
+[node name="Segment1" type="CollisionShape2D" parent="MapRoot/SpawnPoint3/Path/Colliders" index="0"]
+position = Vector2( 1188.82, 908.065 )
+shape = SubResource( 7 )
+
+[node name="Segment2" type="CollisionShape2D" parent="MapRoot/SpawnPoint3/Path/Colliders" index="1"]
+position = Vector2( 994.458, 212.422 )
+rotation = -0.819802
+shape = SubResource( 8 )
+
+[node name="Segment3" type="CollisionShape2D" parent="MapRoot/SpawnPoint3/Path/Colliders" index="2"]
+position = Vector2( 387.05, 30.4951 )
+rotation = -1.56316
+shape = SubResource( 9 )
 
 [node name="WorldEnvironment" parent="." instance=ExtResource( 2 )]
 
