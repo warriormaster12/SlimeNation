@@ -10,6 +10,7 @@ var shoot_tick_counter = 0
 var shoot_update_freq = 60
 
 onready var sfxBuild = $SfxBuild
+onready var sfxShoot = $SfxShoot
 
 func _process(delta):
 	if not active:
@@ -42,6 +43,7 @@ func _update_shooting() -> void:
 	if instance.has_method("set_direction"):
 		instance.set_direction(Vector2(cos(rotation), sin(rotation)))
 	get_parent().add_child(instance)
+	sfxShoot.play()
 
 func _find_closest_target() -> Node2D:
 	var p0 = global_position
