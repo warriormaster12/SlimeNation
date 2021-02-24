@@ -9,6 +9,8 @@ var rot_update_freq = 10
 var shoot_tick_counter = 0
 var shoot_update_freq = 60
 
+onready var sfxBuild = $SfxBuild
+
 func _process(delta):
 	if not active:
 		return
@@ -63,6 +65,7 @@ func _angle_rad_dist(a1: float, a2: float) -> float:
 
 func activate():
 	active = true
+	sfxBuild.play()
 
 func deactivate():
 	active = false

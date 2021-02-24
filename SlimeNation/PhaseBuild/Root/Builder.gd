@@ -43,9 +43,9 @@ func place_trap() -> void:
 	var node = nodeScene.instance()
 	node.position = pos
 	node.rotation = ghost_rotation_deg * PI / 180.0
+	container.add_child(node)
 	if node.has_method('activate'):
 		node.activate()
-	container.add_child(node)
 	_log("Build '%s (id: %s)' at (%d, %d)" % [name, id, pos.x, pos.y])
 
 	# TODO: Move this up somewhere
