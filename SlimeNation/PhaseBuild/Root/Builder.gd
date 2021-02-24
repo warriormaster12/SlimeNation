@@ -106,6 +106,8 @@ func _process(_delta):
 		trap_ghost.position = _fit_to_cell(cursor_pos)
 		if PlayerState.money < TRAP_COST:
 			trap_ghost.modulate = Color(1, 0, 0, 0.5)
+		elif colliders_counter == 0: # If we have money and not colliding atm
+			trap_ghost.modulate = Color(1, 1, 1, 0.5)
 
 # Trap ghost signals
 
