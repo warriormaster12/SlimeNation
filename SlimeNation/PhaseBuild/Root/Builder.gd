@@ -104,6 +104,8 @@ func _process(_delta):
 	if trap_ghost != null:
 		cursor_pos = GameCamera.get_global_mouse_position()
 		trap_ghost.position = _fit_to_cell(cursor_pos)
+		if PlayerState.money < TRAP_COST:
+			trap_ghost.modulate = Color(1, 0, 0, 0.5)
 
 # Trap ghost signals
 
