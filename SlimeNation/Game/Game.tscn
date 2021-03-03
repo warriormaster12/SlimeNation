@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=2]
+[gd_scene load_steps=21 format=2]
 
 [ext_resource path="res://PhaseBuild/Root/Root.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Game/WorldEnvironment.tscn" type="PackedScene" id=2]
@@ -9,6 +9,7 @@
 [ext_resource path="res://Objects/Background/white_pixel.png" type="Texture" id=7]
 [ext_resource path="res://Audio/Music/DJ-Z3ph1 - System Core vol. 2.ogg" type="AudioStream" id=8]
 [ext_resource path="res://Game/MusicManager.gd" type="Script" id=9]
+[ext_resource path="res://Game/Game.gd" type="Script" id=10]
 
 [sub_resource type="Curve2D" id=1]
 _data = {
@@ -83,6 +84,7 @@ tracks/1/keys = {
 }
 
 [node name="Game" type="Node2D"]
+script = ExtResource( 10 )
 
 [node name="HUDRoot" type="Node" parent="."]
 

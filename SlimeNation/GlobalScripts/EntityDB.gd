@@ -11,7 +11,8 @@ onready var __nodes: Dictionary = {
 	# Hard-coded scenes
 	0: preload("res://Entities/Tower/Tower.tscn"),
 	1: preload("res://Entities/Bullet/Bullet.tscn"),
-	2: preload("res://Entities/DefaultSlime/DefaultSlime.tscn")
+	2: preload("res://Entities/Enemies/DefaultSlime/DefaultSlime.tscn"),
+	3: preload("res://Entities/Enemies/BossSlime/BossSlime.tscn"),
 }
 var traps = [] # String[]
 
@@ -25,6 +26,7 @@ func _load_nodes() -> void:
 	__node_id["Tower"] = 0
 	__node_id["Bullet"] = 1
 	__node_id["DefaultSlime"] = 2
+	__node_id["BossSlime"] = 3
 
 func _load_traps() -> void:
 	traps.append("Tower")

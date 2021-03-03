@@ -29,7 +29,7 @@ func _follow_path(delta):
 	if not alive:
 		# Wait until sfx_death has finished
 		$Explosion._emit_particle()
-		$Sprite.visible = false 
+		$Sprite.visible = false
 		if not sfx_death.playing:
 			self.queue_free()
 		return
